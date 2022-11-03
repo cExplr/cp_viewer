@@ -16,7 +16,7 @@ Below is a screenshot example of the current program which will updated along th
 - [x] Drawing CP on canvas
 - [x] .cp file format parsed within program
 - [ ] Zooming
-- [ ] Panning
+- [X] Panning
 - [ ] InfoDisplay box 
 
 ---

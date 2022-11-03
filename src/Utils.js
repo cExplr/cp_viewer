@@ -9,6 +9,8 @@ class Utils {
     // Need to know the boundary by running utils.get_boundaries_from_cpdata first
     // returns list of delta_min_x and delta_min_y
     calculate_translate_deltas(parsed_cp_data){
+        delta_min_x = 0;
+        delta_min_y = 0;
         let boundary_list = this.get_boundaries_from_cp_data(parsed_cp_data);
         min_vector = boundary_list[0];
         max_vector = boundary_list[1];

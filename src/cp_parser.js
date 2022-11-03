@@ -15,6 +15,7 @@ class CP_Parser {
 
         let onFileSelect = (evt)=>{
             console.log("FILE SELECTED")
+            display_scale =1;
             let file_path = evt.target.value
             let file_object = evt.target.files[0]
             if(this.utils.get_file_extension(file_path) === "cp"){
