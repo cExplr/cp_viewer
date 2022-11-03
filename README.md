@@ -11,3 +11,12 @@ Below is a screenshot example of the current program which will updated along th
 ![screenshot_example.png](./img/screenshot_example.png)
 
 ---
+
+## Intended Features Implemented
+- [x] Drawing CP on canvas
+- [x] .cp file format parsed within program
+- [ ] Zooming
+- [ ] Panning
+- [ ] InfoDisplay box 
+
+---
