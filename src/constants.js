@@ -20,7 +20,7 @@ let max_pan_width = window.innerWidth*50;
 
 let min_display_scale = 0; //display_scale_decrement;
 let paper_size = 500;
-let canvas_size_x = screen.width*0.8;
+let canvas_size_x = screen.width;
 let canvas_size_y = screen.height*0.7;
 
 //0h_Ilovecrazyman!!!
