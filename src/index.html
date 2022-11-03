@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CP Viewer</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      background-color: #1b1b1b;
+      
+    }
+
+    header {
+      color: white;
+      padding : 020px;
+      max-height:5vh;
+    }
+
+    header.span {
+      text-align: center;
+    }
+
+    main{
+      max-height: 90vh;
+      max-width:100%;
+    }
+
+    footer {
+      color: white;
+      font-size: small;
+      max-height:5vh;
+      padding : 020px;
+    }
+
+  </style>
+  <script src="../lib/p5.min.js"></script>
+  
+  <!-- <script src="../addons/p5.sound.js"></script> -->
+  <script src="./constants.js"></script>
+  <script src="./Controls.js"></script>
+  <script src="./Utils.js"></script>
+  <script src="./cp_parser.js"></script>
+
+  <script src="sketch.js"></script>
+</head>
+
+<body>
+  <header>
+    
+    <span>CP viewer takes in and previews .cp files</span>
+    <form enctype="multipart/form-data">
+      <input type="file" id="file_upload", accept=".cp" name="files[]" size="30"/>
+    </form>
+  </header>
+  <main>
+  </main>
+  <footer>Just a Simple CP Viewer written by @table</footer>
+</body>
+
+</html>
