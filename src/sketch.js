@@ -53,8 +53,6 @@ function draw() {
 }
 
 
-/*
-
 // Involves in the panning
 function mouseDragged(){
   // panning by calculatin delta value and translating
@@ -63,7 +61,7 @@ function mouseDragged(){
   pan_y += (mouseY - pmouseY)*pan_factor;
   
 }
-*/
+
 
 // Involves in the zooming
 // Copied blatantly from 
