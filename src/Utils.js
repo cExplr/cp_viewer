@@ -11,7 +11,7 @@ class Utils {
     calculate_translate_deltas(parsed_cp_data){
         delta_min_x = 0;
         delta_min_y = 0;
-        let boundary_list = this.get_boundaries_from_cp_data(parsed_cp_data);
+        boundary_list = this.get_boundaries_from_cp_data(parsed_cp_data);
         min_vector = boundary_list[0];
         max_vector = boundary_list[1];
         if (min_vector.x < 0 ){
@@ -25,7 +25,7 @@ class Utils {
         console.log("Delta_min_x" , delta_min_x)
         console.log("Delta_min_y" , delta_min_y)
 
-        let delta_min_xy_list = [];
+        delta_min_xy_list = [];
         delta_min_xy_list.push(delta_min_x);
         delta_min_xy_list.push(delta_min_y);
 

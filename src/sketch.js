@@ -1,5 +1,8 @@
 // This is the actual file where everything starts from
 
+window.addEventListener('mousedown',(e)=>{
+  console.log(e.clientX , " , " , e.clientY);
+},false)
 
 
 let grid_width = paper_size / num_grid
@@ -40,9 +43,56 @@ function draw() {
   background(255);
   set_line_based_on_fold_type(DEFAULT);
   drawGrid();
-  scale(display_scale)
   translate(pan_x, pan_y)
+  translate(zoom_offset_x, zoom_offset_y);
+  scale(curr_zoom)
+  
+  
   drawCP(parser.parsed_data);
+  
+}
+
+
+/*
+
+// Involves in the panning
+function mouseDragged(){
+  // panning by calculatin delta value and translating
+  //console.log("dragging from " , mouseX, ',',mouseY, ' -- > ', pmouseX, ',',pmouseY)
+  pan_x += (mouseX - pmouseX)*pan_factor;
+  pan_y += (mouseY - pmouseY)*pan_factor;
+  
+}
+*/
+
+// Involves in the zooming
+// Copied blatantly from 
+// https://gist.github.com/companje/5478fff07a18a1f4806df4cf77ae1048
+
+function mouseWheel(event){
+  const {x,y,deltaY} = event;
+  const direction = (deltaY < 0)?-1:1;
+  let oldZoom = curr_zoom.toFixed(2);
+  if(direction > 0 ){
+    console.log("Zooming out"); 
+    curr_zoom *= (1/(1+zoom_factor))
+    let zoomChange = curr_zoom- oldZoom;
+    zoom_offset_x -= (mouseX - pan_x - start_x )* zoomChange;
+    zoom_offset_y -= (mouseY - pan_y - start_y) * zoomChange;
+
+  }else{
+    console.log("Zooming in ");
+    curr_zoom *= (1+zoom_factor);
+    let zoomChange = oldZoom - curr_zoom ;
+    zoom_offset_x += (mouseX - pan_x - start_x)* zoomChange;
+    zoom_offset_y += (mouseY - pan_y - start_y) * zoomChange;
+    
+  }
+  console.log(zoom_offset_x)
+  console.log(zoom_offset_y)
+  
+
+  return false;
 }
 
 function drawCP(parsed_cp_data){
@@ -58,62 +108,13 @@ function drawCP(parsed_cp_data){
     line(x1,y1,x2, y2)
     set_line_based_on_fold_type(DEFAULT);
     fill(255);
-    ellipse(x1,y1,3,3);
-    ellipse(x2,y2,3,3);
+    //ellipse(x1,y1,3,3);
+    //ellipse(x2,y2,3,3);
   }
 }
 
-// Involves in the panning
-function mouseDragged(){
-  // panning by calculatin delta value and translating
-  //console.log("dragging from " , mouseX, ',',mouseY, ' -- > ', pmouseX, ',',pmouseY)
-  pan_x += (mouseX - pmouseX)*pan_factor;
-  pan_y += (mouseY - pmouseY)*pan_factor;
-
-  return false;
-}
-
-// Involves in the zooming
-// Copied blatantly from 
-// https://gist.github.com/companje/5478fff07a18a1f4806df4cf77ae1048
-/*
-function mouseWheel(event){
-  
-  // for zoom in it's scroll wheel up which is going towards negative
-  var delta = event.delta; // this is the delta between each "tick"
-  if(delta > 0){
-    // zooming in 
-    // limit max zoom to 40 times the width of the canvas
-    for(var i =0 ; i < delta; i++){
-      if(tow > max_pan_width){
-        return; // max zoom 
-      }
-
-      delta_min_x -= 0.01*(mouseX - delta_min_x); // these are used in teh translation as well
-      delta_min_y -= 0.01*(mouseY-delta_min_y);
-      tow *= 0.01 + 1;
-      toh *= 0.01 + 1;
-    }
 
 
-  }else if (delta < 0){
-    // zooming out
-    delta = -1*delta;
-    for(var i =0 ; i < delta; i++){
-      if(tow > max_pan_width){
-        return; // max zoom 
-      }
-
-      delta_min_x += 0.01*(mouseX - delta_min_x); // these are used in teh translation as well
-      delta_min_y += 0.01*(mouseY-delta_min_y);
-      tow *= 0.01 - 1;
-      toh *= 0.01 - 1;
-    }
-  }
-  return false;
-
-}
-*/
 
 function set_line_based_on_fold_type(fold_type_int){
   strokeWeight(.4);
