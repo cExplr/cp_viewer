@@ -62,11 +62,23 @@ function mouseDragged(){
   
 }
 
+function mouseWheel(event){
+  
+  zoom_increment = 0.1;
+  if(event.wheelDeltaY < 0 ){
+    curr_zoom -= zoom_increment;
+  }else{
+    curr_zoom += zoom_increment;
+  }
+
+  return false;
+}
 
 // Involves in the zooming
 // Copied blatantly from 
 // https://gist.github.com/companje/5478fff07a18a1f4806df4cf77ae1048
 
+/*
 function mouseWheel(event){
   const {x,y,deltaY} = event;
   const direction = (deltaY < 0)?-1:1;
@@ -75,15 +87,15 @@ function mouseWheel(event){
     console.log("Zooming out"); 
     curr_zoom *= (1/(1+zoom_factor))
     let zoomChange = curr_zoom- oldZoom;
-    zoom_offset_x -= (mouseX - pan_x - start_x )* zoomChange;
-    zoom_offset_y -= (mouseY - pan_y - start_y) * zoomChange;
+    zoom_offset_x -= (mouseX - pan_x )* zoomChange;
+    zoom_offset_y -= (mouseY - pan_y ) * zoomChange;
 
   }else{
     console.log("Zooming in ");
     curr_zoom *= (1+zoom_factor);
     let zoomChange = oldZoom - curr_zoom ;
-    zoom_offset_x += (mouseX - pan_x - start_x)* zoomChange;
-    zoom_offset_y += (mouseY - pan_y - start_y) * zoomChange;
+    zoom_offset_x += (mouseX - pan_x )* zoomChange;
+    zoom_offset_y += (mouseY - pan_y ) * zoomChange;
     
   }
   console.log(zoom_offset_x)
@@ -92,6 +104,8 @@ function mouseWheel(event){
 
   return false;
 }
+*/
+
 
 function drawCP(parsed_cp_data){
   for(var data in parsed_cp_data){
