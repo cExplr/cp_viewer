@@ -3,72 +3,113 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="HandheldFriendly" content="true" />
   <title>CP Viewer</title>
   <style>
-    
+    * {
+      touch-action: manipulation;
+    }
     html,body {
       padding: 0;
       margin: 0;
       background-color: #1b1b1b;
-      position:relative;
-    }
-
-    header {
+      font-family: monospace;
       color: white;
-      padding : 020px;
-      max-height:5vh;
+      overflow: hidden;
     }
 
-    header.span {
-      text-align: center;
-    }
-
-    main{
-      max-height: 9vh;
-      max-width:100%;
-    }
-
-    form {
-      width:100%;
-
-    }
-
+    
     canvas{
-      top:5vh;
+      top:100vh;
       position:sticky;
       width:100%;
     }
 
-    footer {
-      color: white;
-      font-size: small;
-      max-height:5vh;
-      padding : 020px;
+    .settings-container{
+      display: flex;
+      color:white;
+      flex-wrap: nowrap;
+      justify-content:  flex-start;
+      justify-content:flex-start;
+      /*border: 1px solid red;*/
+      padding: 1em;
+
+    }
+    .option{
+      /* border: 1px solid yellow; */
+      margin-left: 1.5em;
+      margin-top : 1em;
+      margin-bottom: 1em;;
     }
 
+
+    .description_text{
+      padding: 1em;
+
+    }
+
+
+    .input-container{
+      /*border: 1px solid cyan;*/
+    }
+
+    .form {
+      /*border: 1px solid white;*/
+      padding-left: 1em;
+      padding-right: 1em;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+ 
+
   </style>
-  <script src="./lib/p5.min.js"></script>
-  
+  <script src="./lib/p5.min.js"></script>  
+  <!-- <script src="./lib/p5.svg.js"></script>  -->
+
   <!-- <script src="../addons/p5.sound.js"></script> -->
   <script src="./src/constants.js"></script>
   <script src="./src/Utils.js"></script>
   <script src="./src/cp_parser.js"></script>
-
+  
   <script src="./src/sketch.js"></script>
 </head>
 
 <body>
-  <header>
+
+  <!-- Description Text about what this program is about -->
+  <h3 class="description_text">Feed me .cp files please.</h3>
+  <!-- Input container to choose file from -->
+  <div class="input-container">
+    <div class="form">
+      <form enctype="multipart/form-data">
+        <input type="file" id="file_upload", accept=".cp" name="files[]" size="30"/>
+      </form>
+    </div>
+  </div>
+
+  <!-- Settings Container -->
+  <div class="settings-container">
+    <div id="darkmode-option" class="option">
+      Dark Mode
+      <input type="checkbox">
+    </div>
     
-    <span>CP viewer takes in and previews .cp files</span>
-    <form enctype="multipart/form-data">
-      <input type="file" id="file_upload", accept=".cp" name="files[]" size="30"/>
-    </form>
-  </header>
-  <main>
-  </main>
-  <footer>Just a Simple CP Viewer written by @table</footer>
+    <div id="save-png-option" class="option">
+      <button>Export PNG</button>
+    </div>
+
+    <div id="zoom-out-option" class="option">
+      <button>Zoom Out</button>
+    </div>
+
+    <div id="zoom-in-option" class="option">
+      <button>Zoom In</button>
+    </div>
+  </div>
+
+
 </body>
 
 </html>
