@@ -40,13 +40,55 @@ class CP_Parser {
         window.addEventListener(
             'DOMContentLoaded',
             ()=>{ 
+                document.addEventListener('touchmove', function (event) {
+                    if (event.scale !== 1) { event.preventDefault(); }
+                  }, false);
+                  
+                document.addEventListener('gesturestart', function(e) {
+                    e.preventDefault();
+                    // special hack to prevent zoom-to-tabs gesture in safari
+                    document.body.style.zoom = 0.99;
+                });
+                
+                document.addEventListener('gesturechange', function(e) {
+                    e.preventDefault();
+                    // special hack to prevent zoom-to-tabs gesture in safari
+                    document.body.style.zoom = 0.99;
+                });
+                
+                document.addEventListener('gestureend', function(e) {
+                    e.preventDefault();
+                    // special hack to prevent zoom-to-tabs gesture in safari
+                    document.body.style.zoom = 0.99;
+                });
+
+
                 document.getElementById("file_upload")
                     .addEventListener(
                         'change',
                         onFileSelect, // the handler for when file is selected leading to change
                         false
                     ); 
+                document.getElementById("darkmode-option").addEventListener("change",()=>{
+                    enable_dark_theme = !enable_dark_theme;
+                  });
+
+                document.getElementById("zoom-in-option").addEventListener("click", (e)=>{
+                    curr_zoom += 0.1;
+                });
+
+                document.getElementById("zoom-out-option").addEventListener("click", (e)=>{
+                    curr_zoom -= 0.1;
+                });
+
+                document.getElementById("save-png-option").addEventListener("click", (e)=>{
+                    save(document.getElementById("file_upload").files[0].name + ".png");
+                    print("SVG Exported");
+                });
+
                 }
+
+               
             );
             
 
@@ -88,25 +130,4 @@ class CP_Parser {
         return this.parsed_data;
     }  // end parse_cp_data
 
-
-
-
-    
-
-
 } // END CP_Parser class
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
