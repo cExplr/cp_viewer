@@ -30,4 +30,5 @@ let canvas_size_y = screen.height*0.7;
 
 
 let delta_min_xy_list = [];
-//0h_Ilovecrazyman!!!
+
+let enable_dark_theme = false;
