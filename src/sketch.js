@@ -2,7 +2,9 @@
 
 window.addEventListener('mousedown',(e)=>{
   console.log(e.clientX , " , " , e.clientY);
+  console.log(mouseX, pmouseX)
 },false)
+
 
 
 let grid_width = paper_size / num_grid
@@ -35,12 +37,16 @@ function setup() {
   // put setup code here
   // shall contain all the data lines in an array 
   
-  var canvas = createCanvas(canvas_size_x,canvas_size_y);
+  var canvas = createCanvas(window.innerWidth,window.innerHeight);
 }
 
 function draw() {
   // put drawing code here
   background(255);
+  if(enable_dark_theme == true){
+    background(0)
+  }
+  
   set_line_based_on_fold_type(DEFAULT);
   drawGrid();
   translate(pan_x, pan_y)
@@ -56,10 +62,16 @@ function draw() {
 // Involves in the panning
 function mouseDragged(){
   // panning by calculatin delta value and translating
-  //console.log("dragging from " , mouseX, ',',mouseY, ' -- > ', pmouseX, ',',pmouseY)
-  pan_x += (mouseX - pmouseX)*pan_factor;
-  pan_y += (mouseY - pmouseY)*pan_factor;
-  
+  console.log("dragging from " , mouseX, ',',mouseY, ' -- > ', pmouseX, ',',pmouseY)
+  x=  mouseX;
+  px = pmouseX;
+  y = mouseY;
+  py = pmouseY;
+  tempx = pan_x;
+  tempy = pan_y;
+  pan_x += (x - px);
+  pan_y += (y - py);
+  console.log(tempx, "->", pan_x,"     ,    ", tempy ,"->", pan_y)
 }
 
 function mouseWheel(event){
@@ -126,29 +138,48 @@ function drawCP(parsed_cp_data){
 }
 
 
-
-
 function set_line_based_on_fold_type(fold_type_int){
   strokeWeight(.4);
   noFill();
   if(fold_type_int == MOUNTAIN){
-    stroke(190,20,20);
+    if (enable_dark_theme == true){
+      stroke(255,120,120);
+    }else{
+      stroke(190,20,20);
+    }
   }else if (fold_type_int == VALLEY){
-    stroke(20,20,190);
+    if (enable_dark_theme == true){
+      stroke(120,120,255);
+    }else{
+      stroke(20,20,190);
+    }
   }
   else if ( fold_type_int == EDGE){
-    strokeWeight(1);
-    stroke(0);
+    strokeWeight(1.5);
+    if (enable_dark_theme == true){
+      stroke(123,203,180);
+    }else{
+      stroke(40);
+    }
   }else if (fold_type_int == DEFAULT){
     strokeWeight(1);
-    stroke(0);
+    if (enable_dark_theme == true){
+      stroke(0);
+    }else{
+      stroke(150);
+    }
   }
   else{
-    strokeWeight(.7);
-    stroke(23,203,180);
+    strokeWeight(2);
+    if (enable_dark_theme == true){
+      stroke(123,203,180);
+    }else{
+      stroke(40);
+    }
   }
   
 }
+
 
 
 
